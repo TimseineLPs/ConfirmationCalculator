@@ -5,7 +5,7 @@ import math
 blocktimeMinutes = 2 # in minutes
 attackCostHour = 21000 #$
 productCost = 500000 #$
-margin = 1.2 # add 20%
+margin = 2.0
 baselineConfirmations = 6
 print("Set the parameters for your currency, leave empty to choose the defaults")
 i = input("\nBlocktime in Minutes(default="+str(blocktimeMinutes)+"):")
