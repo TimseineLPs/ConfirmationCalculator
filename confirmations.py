@@ -1,11 +1,10 @@
 ##Calculate the number of confirmations necessary
 ## To make a 51% attack uneconomical
-import math
-
+import sys, math
 blocktimeMinutes = 2 # in minutes
 attackCostHour = 21000 #$
 productCost = 500000 #$
-margin = 1.2 # add 20%
+margin = 2.0
 baselineConfirmations = 6
 print("Set the parameters for your currency, leave empty to choose the defaults")
 i = input("\nBlocktime in Minutes(default="+str(blocktimeMinutes)+"):")
@@ -33,10 +32,13 @@ print("Note that the numbers provided by this program might not fit your busines
 recommendedConfirmations = productCost/(attackCostHour*(blocktimeMinutes/60))*margin + baselineConfirmations
 
 print("Recommended number of Confirmations:", int(recommendedConfirmations))
-delay = recommendedConfirmations*(blocktimeMinutes/60)
-if delay > 1.1:
-	print("Delay: ", delay, "h")
-else:
-	print("Delay: ", delay*60, "min")
+delay = recommendedConfirmations*blocktimeMinutes
+
+sys.stdout.write("Delay: ")
+if delay/60 > 1:
+	sys.stdout.write(str(math.floor(delay/60))+"h ")
+
+sys.stdout.write(str(round(delay%60,2))+ "min\n")
+sys.stdout.flush()
 
 
